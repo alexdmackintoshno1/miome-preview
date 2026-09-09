@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F6F7F3">
+<meta name="robots" content="noindex">
+<title>Miome</title>
+<link rel="preload" as="image" href="img/01.webp" type="image/webp">
+<style>
+:root{--paper:#F6F7F3;--ink:#2C5B43;--pad:12px;--readw:1450px;
+ --sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px);
+ --sal:env(safe-area-inset-left,0px);--sar:env(safe-area-inset-right,0px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--paper);overflow:hidden;overscroll-behavior:none;
+ touch-action:pan-x pan-y;font:500 12px/1 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink)}
+#deck{position:fixed;inset:0;display:flex;overflow-x:auto;overflow-y:hidden;
+ scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;touch-action:pan-x}
+#deck::-webkit-scrollbar{display:none}
+#deck.reading{overflow:hidden;scroll-snap-type:none}
+.slide{flex:0 0 100%;width:100%;height:100%;scroll-snap-align:start;scroll-snap-stop:always;
+ display:flex;align-items:center;justify-content:center;overflow:hidden;
+ padding:calc(var(--pad) + var(--sat)) calc(var(--pad) + var(--sar)) calc(var(--pad) + 22px + var(--sab)) calc(var(--pad) + var(--sal))}
+picture{display:contents}
+.slide img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;
+ border-radius:6px;box-shadow:0 1px 2px rgba(20,40,30,.08),0 10px 30px rgba(20,40,30,.10);
+ background:#fff;cursor:zoom-in;transform-origin:0 0;will-change:transform}
+.slide.read{display:block;overflow:auto;overscroll-behavior:contain;
+ scrollbar-width:none;padding:0;touch-action:pan-x pan-y}
+.slide.read::-webkit-scrollbar{display:none}
+.slide.read img{width:var(--readw);max-width:none;max-height:none;border-radius:0;box-shadow:none;cursor:zoom-out}
+.slide img.flip{transition:transform .26s cubic-bezier(.2,.7,.2,1)}
+#dots{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(10px + var(--sab));
+ display:flex;gap:3px;width:min(62vw,300px);pointer-events:none;transition:opacity .2s}
+#dots i{flex:1;height:2px;border-radius:1px;background:rgba(44,91,67,.22);transition:background .25s}
+#dots i.on{background:var(--ink)}
+#num{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(22px + var(--sab));
+ font-variant-numeric:tabular-nums;letter-spacing:.04em;opacity:0;transition:opacity .25s;pointer-events:none}
+#num.on{opacity:.85}
+#hint{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);padding:9px 14px;border-radius:20px;
+ background:rgba(44,91,67,.9);color:#F6F7F3;font-size:13px;letter-spacing:.02em;opacity:0;
+ transition:opacity .35s;pointer-events:none;white-space:nowrap}
+#hint.on{opacity:1}
+body.reading #dots,body.reading #num{opacity:0}
+</style>
+</head>
+<body>
+<main id="deck">
+<section class="slide"><picture><source type="image/webp" srcset="img/01.webp"><img src="img/01.jpg" width="1448" height="1086" alt="" decoding="async" fetchpriority="high"></picture></section>
+<section class="slide"><picture><source type="image/webp" srcset="img/02.webp"><img src="img/02.jpg" width="1536" height="1024" alt="" decoding="async"></picture></section>
+<section class="slide"><picture><source type="image/webp" data-srcset="img/03.webp"><img data-src="img/03.jpg" width="1447" height="1087" alt="" decoding="async"></picture></section>
+<section class="slide"><picture><source type="image/webp" data-srcset="img/04.webp"><img data-src="img/04.jpg" width="1448" height="1086" alt="" decoding="async"></picture></section>
+<section class="slide"><picture><source type="image/webp" data-srcset="img/05.webp"><img data-src="img/05.jpg" width="1536" height="1024" alt="" decoding="async"></picture></section>
+<section class="slide"><picture><source type="image/webp" data-srcset="img/06.webp"><img data-src="img/06.jpg" width="1536" height="1024" alt="" decoding="async"></picture></section>
+<section class="slide"><picture><source type="image/webp" data-srcset="img/07.webp"><img data-src="img/07.jpg" width="1536" height="1024" alt="" decoding="async"></picture></section>
+<section class="slide"><picture><source type="image/webp" data-srcset="img/08.webp"><img data-src="img/08.jpg" width="1448" height="1086" alt="" decoding="async"></picture></section>
+<section class="slide"><picture><source type="image/webp" data-srcset="img/09.webp"><img data-src="img/09.jpg" width="1536" height="1024" alt="" decoding="async"></picture></section>
+<section class="slide"><picture><source type="image/webp" data-srcset="img/10.webp"><img data-src="img/10.jpg" width="1447" height="1087" alt="" decoding="async"></picture></section>
+<section class="slide"><picture><source type="image/webp" data-srcset="img/11.webp"><img data-src="img/11.jpg" width="1447" height="1087" alt="" decoding="async"></picture></section>
+<section class="slide"><picture><source type="image/webp" data-srcset="img/12.webp"><img data-src="img/12.jpg" width="1448" height="1086" alt="" decoding="async"></picture></section>
+<section class="slide"><picture><source type="image/webp" data-srcset="img/13.webp"><img data-src="img/13.jpg" width="1536" height="1024" alt="" decoding="async"></picture></section>
+<section class="slide"><picture><source type="image/webp" data-srcset="img/14.webp"><img data-src="img/14.jpg" width="1536" height="1024" alt="" decoding="async"></picture></section>
+<section class="slide"><picture><source type="image/webp" data-srcset="img/15.webp"><img data-src="img/15.jpg" width="1536" height="1024" alt="" decoding="async"></picture></section>
+<section class="slide"><picture><source type="image/webp" data-srcset="img/16.webp"><img data-src="img/16.jpg" width="1024" height="1536" alt="" decoding="async"></picture></section>
+<section class="slide"><picture><source type="image/webp" data-srcset="img/17.webp"><img data-src="img/17.jpg" width="1024" height="1536" alt="" decoding="async"></picture></section>
+<section class="slide"><picture><source type="image/webp" data-srcset="img/18.webp"><img data-src="img/18.jpg" width="1536" height="1024" alt="" decoding="async"></picture></section>
+<section class="slide"><picture><source type="image/webp" data-srcset="img/19.webp"><img data-src="img/19.jpg" width="1536" height="1024" alt="" decoding="async"></picture></section>
+<section class="slide"><picture><source type="image/webp" data-srcset="img/20.webp"><img data-src="img/20.jpg" width="1536" height="1024" alt="" decoding="async"></picture></section>
+</main>
+<div id="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div id="num" aria-live="polite">1 / 20</div>
+<div id="hint">Tap a screen to read it</div>
+<script>
+(function(){
+var deck=document.getElementById('deck'),slides=[].slice.call(deck.children),
+    dots=[].slice.call(document.getElementById('dots').children),num=document.getElementById('num'),
+    hint=document.getElementById('hint'),N=slides.length,idx=-1,numT,reading=null;
+
+function load(i){var s=slides[i];if(!s)return;var src=s.querySelector('source'),img=s.querySelector('img');
+  if(src&&src.dataset.srcset){src.srcset=src.dataset.srcset;delete src.dataset.srcset}
+  if(img.dataset.src){img.src=img.dataset.src;delete img.dataset.src}}
+function setIdx(i,quiet){if(i===idx)return;idx=i;
+  dots.forEach(function(d,k){d.classList.toggle('on',k===i)});
+  num.textContent=(i+1)+' / '+N;
+  for(var k=i-1;k<=i+1;k++)load(k);
+  if(quiet)return;num.classList.add('on');clearTimeout(numT);numT=setTimeout(function(){num.classList.remove('on')},1200)}
+function current(){return Math.round(deck.scrollLeft/deck.clientWidth)}
+var raf=0;deck.addEventListener('scroll',function(){if(raf)return;raf=requestAnimationFrame(function(){raf=0;setIdx(current())})},{passive:true});
+
+function flip(img,before,after){img.classList.remove('flip');
+  img.style.transform='translate('+(before.left-after.left)+'px,'+(before.top-after.top)+'px) scale('+(before.width/after.width)+')';
+  void img.offsetWidth;img.classList.add('flip');img.style.transform='';
+  img.addEventListener('transitionend',function e(){img.classList.remove('flip');img.removeEventListener('transitionend',e)})}
+
+function enter(s,cx,cy){var img=s.querySelector('img'),before=img.getBoundingClientRect();
+  var rx=(cx-before.left)/before.width,ry=(cy-before.top)/before.height;
+  reading=s;s.classList.add('read');deck.classList.add('reading');document.body.classList.add('reading');deck.scrollLeft=idx*deck.clientWidth;
+  var vw=s.clientWidth,vh=s.clientHeight,rw=img.offsetWidth,rh=img.offsetHeight;
+  s.scrollLeft=Math.max(0,Math.min(rw-vw,rx*rw-vw/2));s.scrollTop=Math.max(0,Math.min(rh-vh,ry*rh-vh/2));
+  flip(img,before,img.getBoundingClientRect())}
+function exit(s){var img=s.querySelector('img'),before=img.getBoundingClientRect();
+  s.classList.remove('read');deck.classList.remove('reading');document.body.classList.remove('reading');reading=null;
+  s.scrollLeft=0;s.scrollTop=0;deck.scrollLeft=idx*deck.clientWidth;
+  flip(img,before,img.getBoundingClientRect())}
+
+var px,py,pt;
+deck.addEventListener('pointerdown',function(e){px=e.clientX;py=e.clientY;pt=Date.now()},{passive:true});
+deck.addEventListener('click',function(e){
+  if(e.target.tagName!=='IMG')return;
+  if(Math.abs(e.clientX-px)>8||Math.abs(e.clientY-py)>8||Date.now()-pt>600)return;
+  var s=e.target.closest('.slide');
+  if(reading)exit(reading);else enter(s,e.clientX,e.clientY)});
+
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'&&reading)exit(reading);
+  if(reading)return;
+  if(e.key==='ArrowRight')deck.scrollBy({left:deck.clientWidth,behavior:'smooth'});
+  if(e.key==='ArrowLeft')deck.scrollBy({left:-deck.clientWidth,behavior:'smooth'})});
+
+window.addEventListener('resize',function(){if(!reading)deck.scrollLeft=idx*deck.clientWidth});
+
+var start=Math.min(N-1,Math.max(0,(parseInt(location.hash.slice(1),10)||1)-1));
+if(start)deck.scrollLeft=start*deck.clientWidth;
+setIdx(start,true);
+try{if(!sessionStorage.getItem('miome-hint')){sessionStorage.setItem('miome-hint','1');
+  setTimeout(function(){hint.classList.add('on')},700);setTimeout(function(){hint.classList.remove('on')},3200)}}catch(_){}
+})();
+</script>
+</body>
+</html>

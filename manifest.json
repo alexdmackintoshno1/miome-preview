@@ -1,0 +1,162 @@
+[
+ {
+  "n": "01",
+  "slug": "landing",
+  "w": 1448,
+  "h": 1086,
+  "webp": 83020,
+  "jpg": 128420
+ },
+ {
+  "n": "02",
+  "slug": "local-reveal",
+  "w": 1536,
+  "h": 1024,
+  "webp": 177802,
+  "jpg": 239311
+ },
+ {
+  "n": "03",
+  "slug": "photo-and-size",
+  "w": 1447,
+  "h": 1087,
+  "webp": 134478,
+  "jpg": 191746
+ },
+ {
+  "n": "04",
+  "slug": "whats-already-here",
+  "w": 1448,
+  "h": 1086,
+  "webp": 154664,
+  "jpg": 206887
+ },
+ {
+  "n": "05",
+  "slug": "who-else-uses-it",
+  "w": 1536,
+  "h": 1024,
+  "webp": 107122,
+  "jpg": 157368
+ },
+ {
+  "n": "06",
+  "slug": "what-could-miome-consider",
+  "w": 1536,
+  "h": 1024,
+  "webp": 148194,
+  "jpg": 208363
+ },
+ {
+  "n": "07",
+  "slug": "how-far-up-for-going",
+  "w": 1536,
+  "h": 1024,
+  "webp": 188396,
+  "jpg": 240710
+ },
+ {
+  "n": "08",
+  "slug": "what-would-you-love",
+  "w": 1448,
+  "h": 1086,
+  "webp": 175304,
+  "jpg": 225072
+ },
+ {
+  "n": "09",
+  "slug": "who-to-make-room-for",
+  "w": 1536,
+  "h": 1024,
+  "webp": 121818,
+  "jpg": 180777
+ },
+ {
+  "n": "10",
+  "slug": "realistic-possibilities",
+  "w": 1447,
+  "h": 1087,
+  "webp": 145226,
+  "jpg": 202765
+ },
+ {
+  "n": "11",
+  "slug": "how-should-it-feel-full",
+  "w": 1447,
+  "h": 1087,
+  "webp": 216808,
+  "jpg": 271318
+ },
+ {
+  "n": "12",
+  "slug": "how-should-it-feel-short",
+  "w": 1448,
+  "h": 1086,
+  "webp": 164314,
+  "jpg": 211676
+ },
+ {
+  "n": "13",
+  "slug": "budget-and-time",
+  "w": 1536,
+  "h": 1024,
+  "webp": 140974,
+  "jpg": 202050
+ },
+ {
+  "n": "14",
+  "slug": "working-it-out",
+  "w": 1536,
+  "h": 1024,
+  "webp": 186292,
+  "jpg": 232542
+ },
+ {
+  "n": "15",
+  "slug": "one-trade-off",
+  "w": 1536,
+  "h": 1024,
+  "webp": 188334,
+  "jpg": 240588
+ },
+ {
+  "n": "16",
+  "slug": "free-diagnosis",
+  "w": 1024,
+  "h": 1536,
+  "webp": 204772,
+  "jpg": 263185
+ },
+ {
+  "n": "17",
+  "slug": "the-garden-plan",
+  "w": 1024,
+  "h": 1536,
+  "webp": 176158,
+  "jpg": 236785
+ },
+ {
+  "n": "18",
+  "slug": "checkout",
+  "w": 1536,
+  "h": 1024,
+  "webp": 194174,
+  "jpg": 252217
+ },
+ {
+  "n": "19",
+  "slug": "your-garden-record",
+  "w": 1536,
+  "h": 1024,
+  "webp": 188916,
+  "jpg": 247404
+ },
+ {
+  "n": "20",
+  "slug": "outside-the-beta-area",
+  "w": 1536,
+  "h": 1024,
+  "webp": 240544,
+  "jpg": 294805
+ }
+]
