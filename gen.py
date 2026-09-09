@@ -1,4 +1,31 @@
-<!doctype html>
+#!/usr/bin/env python3
+"""Generate index.html from manifest.json. Run build.py first."""
+import json
+m = json.load(open('manifest.json'))
+N = len(m)
+LABELS = {1:"Landing",2:"What's living around you",3:"Photo and size",4:"What's already here",
+ 5:"Who else uses it",6:"What could Miome consider",7:"How far to go",8:"What it should become",
+ 9:"Who to make room for",10:"Realistic possibilities",11:"How should it feel",12:"How should it feel (short)",
+ 13:"Budget and time",14:"Working it out",15:"One trade-off",16:"Free diagnosis",17:"The garden plan",
+ 18:"Checkout",19:"Your garden record",20:"Outside the beta area"}
+DECISIONS = {
+ 1:{"key":"area","q":"Where is the garden?","opts":[["In Chippenham","in"],["Somewhere else","out"]]},
+ 8:{"key":"route","q":"What would you love it to become?","opts":[["Wildlife I love","A"],["Most for nature","B"],["A garden I love","C"],["What it most needs","D"]]},
+ 14:{"key":"tie","q":"Did two plans tie on ecology?","opts":[["Two plans tied","yes"],["One clear winner","no"]]},
+ 16:{"key":"buy","q":"See the full plan?","opts":[["See my full plan, £39","yes"],["Keep the free diagnosis","no"]]},
+}
+BRANCH = {20:"area",9:"route",10:"route",11:"route",15:"tie",17:"buy",18:"buy",19:"buy"}
+slides=[]
+for i,e in enumerate(m):
+    n=int(e['n']); w=e['w']; h=e['h']
+    ph=f"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='{w}' height='{h}'/%3E"
+    if i<2:
+        pic=f'<picture><source type="image/webp" srcset="img/{e["n"]}.webp"><img src="img/{e["n"]}.jpg" width="{w}" height="{h}" alt="" decoding="async"{" fetchpriority=\"high\"" if i==0 else ""}></picture>'
+    else:
+        pic=f'<picture><source type="image/webp" data-srcset="img/{e["n"]}.webp"><img src="{ph}" data-src="img/{e["n"]}.jpg" width="{w}" height="{h}" alt="" decoding="async"></picture>'
+    slides.append(f'<section class="slide" data-n="{n}">{pic}</section>')
+screens=json.dumps({int(e['n']):{"l":LABELS[int(e['n'])],"t":f"img/t{e['n']}.webp"} for e in m},ensure_ascii=False)
+html = r'''<!doctype html>
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
@@ -92,26 +119,7 @@ body.reading .chev,body.reading #bar,body.reading #num,body.reading #choice{opac
 </head>
 <body>
 <main id="deck">
-<section class="slide" data-n="1"><picture><source type="image/webp" srcset="img/01.webp"><img src="img/01.jpg" width="1448" height="1086" alt="" decoding="async" fetchpriority="high"></picture></section>
-<section class="slide" data-n="2"><picture><source type="image/webp" srcset="img/02.webp"><img src="img/02.jpg" width="1536" height="1024" alt="" decoding="async"></picture></section>
-<section class="slide" data-n="3"><picture><source type="image/webp" data-srcset="img/03.webp"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1447' height='1087'/%3E" data-src="img/03.jpg" width="1447" height="1087" alt="" decoding="async"></picture></section>
-<section class="slide" data-n="4"><picture><source type="image/webp" data-srcset="img/04.webp"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1448' height='1086'/%3E" data-src="img/04.jpg" width="1448" height="1086" alt="" decoding="async"></picture></section>
-<section class="slide" data-n="5"><picture><source type="image/webp" data-srcset="img/05.webp"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1536' height='1024'/%3E" data-src="img/05.jpg" width="1536" height="1024" alt="" decoding="async"></picture></section>
-<section class="slide" data-n="6"><picture><source type="image/webp" data-srcset="img/06.webp"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1536' height='1024'/%3E" data-src="img/06.jpg" width="1536" height="1024" alt="" decoding="async"></picture></section>
-<section class="slide" data-n="7"><picture><source type="image/webp" data-srcset="img/07.webp"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1536' height='1024'/%3E" data-src="img/07.jpg" width="1536" height="1024" alt="" decoding="async"></picture></section>
-<section class="slide" data-n="8"><picture><source type="image/webp" data-srcset="img/08.webp"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1448' height='1086'/%3E" data-src="img/08.jpg" width="1448" height="1086" alt="" decoding="async"></picture></section>
-<section class="slide" data-n="9"><picture><source type="image/webp" data-srcset="img/09.webp"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1536' height='1024'/%3E" data-src="img/09.jpg" width="1536" height="1024" alt="" decoding="async"></picture></section>
-<section class="slide" data-n="10"><picture><source type="image/webp" data-srcset="img/10.webp"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1447' height='1087'/%3E" data-src="img/10.jpg" width="1447" height="1087" alt="" decoding="async"></picture></section>
-<section class="slide" data-n="11"><picture><source type="image/webp" data-srcset="img/11.webp"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1447' height='1087'/%3E" data-src="img/11.jpg" width="1447" height="1087" alt="" decoding="async"></picture></section>
-<section class="slide" data-n="12"><picture><source type="image/webp" data-srcset="img/12.webp"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1448' height='1086'/%3E" data-src="img/12.jpg" width="1448" height="1086" alt="" decoding="async"></picture></section>
-<section class="slide" data-n="13"><picture><source type="image/webp" data-srcset="img/13.webp"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1536' height='1024'/%3E" data-src="img/13.jpg" width="1536" height="1024" alt="" decoding="async"></picture></section>
-<section class="slide" data-n="14"><picture><source type="image/webp" data-srcset="img/14.webp"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1536' height='1024'/%3E" data-src="img/14.jpg" width="1536" height="1024" alt="" decoding="async"></picture></section>
-<section class="slide" data-n="15"><picture><source type="image/webp" data-srcset="img/15.webp"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1536' height='1024'/%3E" data-src="img/15.jpg" width="1536" height="1024" alt="" decoding="async"></picture></section>
-<section class="slide" data-n="16"><picture><source type="image/webp" data-srcset="img/16.webp"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1024' height='1536'/%3E" data-src="img/16.jpg" width="1024" height="1536" alt="" decoding="async"></picture></section>
-<section class="slide" data-n="17"><picture><source type="image/webp" data-srcset="img/17.webp"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1024' height='1536'/%3E" data-src="img/17.jpg" width="1024" height="1536" alt="" decoding="async"></picture></section>
-<section class="slide" data-n="18"><picture><source type="image/webp" data-srcset="img/18.webp"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1536' height='1024'/%3E" data-src="img/18.jpg" width="1536" height="1024" alt="" decoding="async"></picture></section>
-<section class="slide" data-n="19"><picture><source type="image/webp" data-srcset="img/19.webp"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1536' height='1024'/%3E" data-src="img/19.jpg" width="1536" height="1024" alt="" decoding="async"></picture></section>
-<section class="slide" data-n="20"><picture><source type="image/webp" data-srcset="img/20.webp"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1536' height='1024'/%3E" data-src="img/20.jpg" width="1536" height="1024" alt="" decoding="async"></picture></section>
+__SLIDES__
 </main>
 <button class="chev" id="prev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
 <button class="chev" id="next" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
@@ -122,7 +130,7 @@ body.reading .chev,body.reading #bar,body.reading #num,body.reading #choice{opac
 <div id="map" hidden><div class="in"><div class="top"><span>Your path</span><button class="x" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div id="rows"></div></div></div>
 <script>
 (function(){
-var SCREENS={"1": {"l": "Landing", "t": "img/t01.webp"}, "2": {"l": "What's living around you", "t": "img/t02.webp"}, "3": {"l": "Photo and size", "t": "img/t03.webp"}, "4": {"l": "What's already here", "t": "img/t04.webp"}, "5": {"l": "Who else uses it", "t": "img/t05.webp"}, "6": {"l": "What could Miome consider", "t": "img/t06.webp"}, "7": {"l": "How far to go", "t": "img/t07.webp"}, "8": {"l": "What it should become", "t": "img/t08.webp"}, "9": {"l": "Who to make room for", "t": "img/t09.webp"}, "10": {"l": "Realistic possibilities", "t": "img/t10.webp"}, "11": {"l": "How should it feel", "t": "img/t11.webp"}, "12": {"l": "How should it feel (short)", "t": "img/t12.webp"}, "13": {"l": "Budget and time", "t": "img/t13.webp"}, "14": {"l": "Working it out", "t": "img/t14.webp"}, "15": {"l": "One trade-off", "t": "img/t15.webp"}, "16": {"l": "Free diagnosis", "t": "img/t16.webp"}, "17": {"l": "The garden plan", "t": "img/t17.webp"}, "18": {"l": "Checkout", "t": "img/t18.webp"}, "19": {"l": "Your garden record", "t": "img/t19.webp"}, "20": {"l": "Outside the beta area", "t": "img/t20.webp"}},DEC={"1": {"key": "area", "q": "Where is the garden?", "opts": [["In Chippenham", "in"], ["Somewhere else", "out"]]}, "8": {"key": "route", "q": "What would you love it to become?", "opts": [["Wildlife I love", "A"], ["Most for nature", "B"], ["A garden I love", "C"], ["What it most needs", "D"]]}, "14": {"key": "tie", "q": "Did two plans tie on ecology?", "opts": [["Two plans tied", "yes"], ["One clear winner", "no"]]}, "16": {"key": "buy", "q": "See the full plan?", "opts": [["See my full plan, £39", "yes"], ["Keep the free diagnosis", "no"]]}},BRANCH={"20": "area", "9": "route", "10": "route", "11": "route", "15": "tie", "17": "buy", "18": "buy", "19": "buy"};
+var SCREENS=__SCREENS__,DEC=__DEC__,BRANCH=__BRANCH__;
 var deck=document.getElementById('deck'),bar=document.getElementById('bar'),num=document.getElementById('num'),
     hint=document.getElementById('hint'),choice=document.getElementById('choice'),map=document.getElementById('map'),
     rows=document.getElementById('rows'),byN={};
@@ -220,3 +228,9 @@ try{if(!sessionStorage.getItem('miome-hint')){sessionStorage.setItem('miome-hint
 </script>
 </body>
 </html>
+'''
+html=html.replace('__SLIDES__','\n'.join(slides)).replace('__SCREENS__',screens)\
+ .replace('__DEC__',json.dumps({k:v for k,v in DECISIONS.items()},ensure_ascii=False))\
+ .replace('__BRANCH__',json.dumps(BRANCH))
+open('index.html','w').write(html)
+print(len(html),'bytes')
